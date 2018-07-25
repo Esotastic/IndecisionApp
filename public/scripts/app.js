@@ -1,4 +1,11 @@
-var template = <p>This is JSX from app.js!</p>;
+"use strict";
+
+//JSX - JavaScript XML
+var template = React.createElement(
+  "h1",
+  null,
+  "Indecison App"
+);
 var appRoot = document.getElementById("app");
 
 ReactDOM.render(template, appRoot);
