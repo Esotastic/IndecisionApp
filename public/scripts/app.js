@@ -2,9 +2,18 @@
 
 //JSX - JavaScript XML
 var template = React.createElement(
-  "h1",
-  null,
-  "Indecison App"
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Indecison App"
+    ),
+    React.createElement(
+        "p",
+        null,
+        "This is some info."
+    )
 );
 var appRoot = document.getElementById("app");
 
