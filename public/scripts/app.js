@@ -2,10 +2,6 @@
 
 //JSX - JavaScript XML
 
-//create app object title/subtitle 
-//use title/subtitle in template
-//render template
-
 var app = {
     title: "Indecision App",
     subtitle: "An app for those who just don't know."
