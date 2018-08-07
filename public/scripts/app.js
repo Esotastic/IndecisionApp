@@ -3,29 +3,18 @@
 //JSX - JavaScript XML
 
 var app = {
-    title: "Indecision App",
-    subtitle: "An app for those who just don't know.",
-    options: []
+    name: "Visibility Toggle",
+    details: "These are some details!",
+    detailToggle: false
 };
 
-var onFormSubmit = function onFormSubmit(e) {
+var showDetails = function showDetails(e) {
     e.preventDefault();
 
-    var option = e.target.elements.option.value;
+    app.detailToggle ? app.detailToggle = false : app.detailToggle = true;
 
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = "";
-        renderOptions();
-    }
-};
-
-var removeAll = function removeAll() {
-    app.options.length = 0;
     renderOptions();
 };
-
-var appRoot = document.getElementById("app");
 
 var renderOptions = function renderOptions() {
     var template = React.createElement(
@@ -34,54 +23,20 @@ var renderOptions = function renderOptions() {
         React.createElement(
             "h1",
             null,
-            app.title
-        ),
-        app.subtitle && React.createElement(
-            "p",
-            null,
-            app.subtitle
-        ),
-        React.createElement(
-            "p",
-            null,
-            app.options.length > 0 ? "Here are your options" : "No options provided."
-        ),
-        React.createElement(
-            "p",
-            null,
-            app.options.length
+            app.name
         ),
         React.createElement(
             "button",
-            { onClick: removeAll },
-            "Remove All Items"
+            { onClick: showDetails },
+            "Click to show details!"
         ),
-        React.createElement(
-            "ol",
+        app.detailToggle && React.createElement(
+            "p",
             null,
-            React.createElement(
-                "li",
-                null,
-                "Item one"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item two"
-            )
-        ),
-        React.createElement(
-            "form",
-            { onSubmit: onFormSubmit },
-            React.createElement("input", { type: "text", name: "option" }),
-            React.createElement(
-                "button",
-                null,
-                "Add Option"
-            )
+            app.details
         )
     );
-    ReactDOM.render(template, appRoot);
+    ReactDOM.render(template, document.getElementById("app"));
 };
 
 renderOptions();
