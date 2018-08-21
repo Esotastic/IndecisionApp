@@ -41,6 +41,10 @@ class Action extends React.Component {
 };
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
     handleRemoveAll() {
         alert("All Options Removed");
     }
@@ -66,11 +70,25 @@ class Option extends React.Component {
     }
 }
 
+//1. Setup form with text input and submit button
+//2.Wire up onSubmit method. 
+//3. Define wired method. handleAddOption -> fetch typed value, if true then alert.
+
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+        const option = e.target.elements.option.value.trim();
+        if(option) {
+            alert(option);
+        }
+    }
     render(){
         return(
             <div>
-                AddOption goes here.
+            <form onSubmit={this.handleAddOption}>
+                <input type="text" name="option"/>
+                <button>Add Option</button>
+            </form>
             </div>
         );
     }
