@@ -1,28 +1,34 @@
 //JSX - JavaScript XML
 
-const app = {
-    name: "Visibility Toggle",
-    details: "These are some details!",
-    detailToggle: false
-};
-
-const showDetails = (e) => {
-    e.preventDefault();
-
-    app.detailToggle ? app.detailToggle = false : app.detailToggle = true;
-
-    renderOptions();
+class Visibility extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleToggleVisibilty = this.handleToggleVisibilty.bind(this);
+        this.state = {
+            visibility: false,
+        };
+    }
+    handleToggleVisibilty() {
+        this.setState((prevState) => {
+            return {
+                visibility: !prevState.visibility 
+            }
+        });
+    }
+    render() {
+        return (
+            <div>
+                <h1>Visibility Toggle</h1>
+                <button onClick={this.handleToggleVisibilty}>
+                    {this.state.visibility ? "Hide Details" : "Show Details"}
+                </button>
+                {this.state.visibility && (
+                    <div>
+                        <p>Here are some details.</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
 }
-
-const renderOptions = () => {
-    const template = (
-        <div>
-            <h1>{app.name}</h1>
-            <button onClick = {showDetails}>Click to show details!</button>
-            {app.detailToggle && <p>{app.details}</p>}
-        </div>
-    );
-    ReactDOM.render(template, document.getElementById("app"));
-}
-
-renderOptions();
+ReactDOM.render(<Visibility />, document.getElementById("app"));
