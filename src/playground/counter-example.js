@@ -1,6 +1,3 @@
-//count - if exists, use as default state
-//if doesn't exist, set default state to 0
-
 class Counter extends React.Component {
     constructor(props) {
         super(props);
@@ -8,7 +5,7 @@ class Counter extends React.Component {
         this.handleAddOne = this.handleAddOne.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.state = {
-            count: props.count
+            count: 0
         };
     }
     handleAddOne(){
@@ -32,6 +29,21 @@ class Counter extends React.Component {
             };
         });
     }
+    componentDidMount() {
+            const stringCount = localStorage.getItem("count");
+            const count = parseInt(stringCount, 10);
+            
+            if(!isNaN(count)) {
+                this.setState(() => ({ count }));
+            }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.count !== this.state.count) {
+            localStorage.setItem("count", this.state.count);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -42,10 +54,6 @@ class Counter extends React.Component {
             </div>
         );
     } 
-}
-
-Counter.defaultProps = {
-    count: 0
 }
 
 ReactDOM.render(<Counter />, document.getElementById("app"));
