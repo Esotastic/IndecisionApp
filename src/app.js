@@ -1,12 +1,10 @@
-// import subtract, { squareNum, add } from "./utils.js";
+//install, import, use 
 
-// console.log("app.js is running!");
-// console.log(squareNum(4));
-// console.log(add(5, 10));
-// console.log(subtract(8, 6));
+import validator from "validator";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import isSenior, { isAdult, canDrink } from "./person.js";
+const template = React.createElement("p", {}, "testing 123");
+ReactDOM.render(template, document.getElementById("app"));
 
-console.log(isAdult(17));
-console.log(canDrink(25));
-console.log(isSenior(65));
+console.log(validator.isEmail("chris"));
